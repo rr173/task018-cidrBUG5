@@ -139,7 +139,7 @@ func (b Block) Contains(ip uint32) bool {
 // ContainsBlock 判断当前网段是否完全包含另一网段 other。
 // 利用对齐性质：A 包含 B 当且仅当 A.Prefix <= B.Prefix 且 B.Network 落在 A 的网络内。
 func (b Block) ContainsBlock(other Block) bool {
-	return b.Prefix < other.Prefix && (other.Network&Mask(b.Prefix)) == b.Network
+	return b.Prefix <= other.Prefix && (other.Network&Mask(b.Prefix)) == b.Network
 }
 
 // Info 汇总单个网段的规整信息。
